@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/Hogwarts.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.jumbotron {
+    background-color: black;
+    opacity: 0.6;
+    margin: 50px auto;
+    height: 550px;
+    width: 800px;
+    padding: 32px 16px;
+}
+
+h3 {
+    color: white;
+    text-align: center;
+    font-size: 80px !important;
+    font-weight: bold !important;
+    font-family: 'Bigelow Rules', cursive;
+    padding-top: 0px;
+}
+
+h2{
+    font-family: 'Marcellus SC', serif;
+}
+
+#items {
+    color: white;
+    text-align: center;
+    font-size: 25px !important;
+}
+
+p {
+    color: white;
+    text-align: center;
+    font-family: 'Marcellus SC', serif;
+}
+
+#directions-text {
+    font-size: 22px;
+}
+
+#currentword {
+    font-size: 36px;
+}
+
+#guesses, #letters, #lettersguessed {
+    font-size: 28px;
+}
+
+#win, #wins-text {
+    float: left;
+    width: 50px;
+}
+
+#lose, #losses-text {
+    float: right;
+    width: 50px;
+}
+
+#lettersguessed, #guesses {
+    margin-bottom: 0px;
+}
+
+#wins-text {
+    padding-left: 50px;
+}
+
+#win {
+    padding-left: 125px;
+}
+
+#lose {
+    padding-right: 60px;
+}
+
+#losses-text {
+    padding-right: 145px;
+}
+
+#audio-icon {
+    width: 30px;
+    margin-left: 0px;
+    margin-top: 0px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bigelow+Rules|David+Libre|IM+Fell+English+SC|Marcellus+SC|Playfair+Display+SC|ZCOOL+XiaoWei" rel="stylesheet">
+    <title>Harry Potter Hangman</title>
+</head>
+<body>
+    <!--make a box that holds the game-->
+    <div class="jumbotron">
+        <h3 class="display-4">Welcome to Harry Potter Hangman</h3>
+        <h2 id="items">Try and guess these items from the world of Harry Potter.</h2>
+        <p id="directions-text">Press any letter to begin the game.</p>
+        <p id="currentword"></p>
+        <p id="lettersguessed">Letters Guessed</p>
+        <p id="guesses">"        "</p>
+        <p id="guesses-remainingText">Guesses Remaining</p>
+        <p id="guesses-remaining"></p>
+        <p id="win">Wins:</p>
+        <p id="wins-text"></p>
+        <p id="losses-text"></p>
+        <p id="lose">Losses:</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <img id="audio-icon" src="assets/images/iconfinder_multimedia-44_2849792.png" alt="Audio Icon">
+    </div>
+
+    
+
+    <iframe id="music" width="0" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/430111&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                
+       
+</body>
+
+<script src="assets/javascript/game.js"></script>
+</html>
