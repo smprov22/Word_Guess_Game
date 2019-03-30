@@ -87,8 +87,7 @@ p {
     padding-right: 145px;
 }
 
-#audio-icon {
-    width: 30px;
-    margin-left: 0px;
-    margin-top: 0px;
+#guesses {
+    height: 40px;
+    padding-bottom: 40px;
 }

@@ -1,17 +1,18 @@
 // Creates an array that lists all the words to be guessed.
-var words = ["pensieve", "portkey", "broomstick", "deluminator", "horcrux"];
+var words = ["pensieve", "portkey", "broomstick", "deluminator", "horcrux", 
+"howler", "wand", "remembrall", "sneakoscope", "quaffle", "cauldron", "dragon"];
 
 //Used to record what character is pressed
 var letterBank = ["a", "b", "c", "d", "e", "f", "g",
 "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
 "r", "s", "t", "u", "w", "x", "y", "z"]
 
-//variables
+//global variables
 var chosenWord = "";
 var wrongLetters = [];
 var lettersInWord = [];
 var numChar = "";
-var blanksAndSuccesses = [];
+var lettersAndDashes = [];
 var guessesremaining = 10;
 var wins = 0;
 var losses = 0;
@@ -36,7 +37,7 @@ function reset() {
 	rightGuessCounter = 0;
 	guessesLeft = 10;
 	wrongLetters =[];
-	blanksAndSuccesses =[];
+	lettersAndDashes =[];
 	letterBank = ['a','b','c',
 					  'd','e','f',
 					  'g','h','i',
@@ -53,7 +54,7 @@ function reset() {
 function startGame() {
 	//Chooses word randombly from the wordBank
 	chosenWord = words[Math.floor(Math.random() * words.length)];
-	//Splits the choosen word into individual letters
+	//Splits the chosen word into individual letters
 	lettersInWord = chosenWord.split('');
 	//Get the number of characters
     numChar = lettersInWord.length;
@@ -65,7 +66,7 @@ function startGame() {
 	rightGuessCounter = 0;
 	guessesLeft = 10;
 	wrongLetters =[];
-	blanksAndSuccesses =[];
+	lettersAndDashes =[];
 	letterBank = ['a','b','c',
 					  'd','e','f',
 					  'g','h','i',
@@ -78,12 +79,13 @@ function startGame() {
                       
     //Generate characters
     for(var i = 0; i < numChar; i++) {
-        blanksAndSuccesses.push("_");
-        currentwordText.textContent = blanksAndSuccesses;
+        lettersAndDashes.push("_");
+        currentwordText.textContent = lettersAndDashes;
     }
 
-    //html changes
-    currentwordText.textContent = blanksAndSuccesses.join(' ');
+	//html changes
+		//puts spaces between characters instead of commas
+    currentwordText.textContent = lettersAndDashes.join(' ');
 	guessesremainingText.textContent = guessesLeft;
 	winsText.textContent = wins;
 	lossesText.textContent = losses;
@@ -93,23 +95,23 @@ function startGame() {
     console.log(chosenWord);
 	console.log(lettersInWord);
 	console.log(numChar);
-    console.log(blanksAndSuccesses);
+    console.log(lettersAndDashes);
 }
 
 function compareLetters(userKey)
 {
-				//If user key exists in chosen word then perform this function 
+				//Determines if the chosen letter is in the chosen word 
 				if(chosenWord.indexOf(userKey) > -1)
 				{
-					//Loops depending on the amount of blanks 
+					//Loops depending on the amount of characters 
 					for(var i = 0; i < numChar; i++)
 					{
-						//Fills in right index with user key
+						//Fills in empty space with chosen letter
 						if(lettersInWord[i] === userKey)
 						{
 							rightGuessCounter++;
-							blanksAndSuccesses[i] = userKey;
-							currentwordText.textContent = blanksAndSuccesses.join(' ');
+							lettersAndDashes[i] = userKey;
+							currentwordText.textContent = lettersAndDashes.join(' ');
 						}	
 					}
 				}
@@ -125,39 +127,40 @@ function compareLetters(userKey)
 }
 function winLose()
 {
-	// When number blanks if filled with right words then you win
+	// If the number of correct guesses equals the number of letters in the word then you win
 	if(rightGuessCounter === numChar)
 	{
 		//Counts Wins 
 		wins++;
 		//Changes HTML
 		winsText.textContent = wins;
-		directionsText.textContent = "You win! Press any letter to play again."
-		reset();
+		directionsText.textContent = "You win! Press any letter to play again.";
+		//Holds screen for 1.5 seconds before reset
+		setTimeout(function(){ reset(); }, 1500);
 	}
-	// When number of Guesses reaches 0 then You lose
+	// If number of incorrect guesses reaches 0 then You lose
 	else if(guessesLeft === 0)
 	{
 		//Counts losses
 		losses++;
 		//Changes HTML
 		lossesText.textContent = losses;
-		directionsText.textContent = "You lose :( Press any letter to play again."
-		reset();
+		directionsText.textContent = "You lose :( Press any letter to play again.";
+		//Holds screen for 1.5 seconds before reset
+		setTimeout(function(){ reset(); }, 1500);
 	}
 }
 // audio functions
-function loop() {
-	document.getElementById("music").loop = true;
+
+var song = document.getElementById("HPtheme");
+
+function playAudio() {
+	song.play();
 }
 
-document.getElementById("audio-icon").onclick =
-function() {enableMute()};
-
-function enableMute() {
-	var x = document.getElementById("myAudio");
-	x.muted = true;
-} 
+function pauseAudio() {
+	song.pause();
+}
 
 //MAIN PROCCESS
 //-------------------------------------------	
@@ -172,11 +175,12 @@ document.onkeyup = function(event)
 	{	
 		if(letterGuessed === letterBank[i] && test === true)
 		{
+			//removes letter from word bank once used
 			var spliceDword = letterBank.splice(i,1);
-
+			//Changes text after the first letter is guessed
+			directionsText.textContent = "Keep Guessing!"
 			compareLetters(letterGuessed);
 			winLose();
 		}
-	}		
-		
+	}			
 }
